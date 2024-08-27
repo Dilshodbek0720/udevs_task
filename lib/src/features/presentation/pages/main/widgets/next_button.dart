@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-
 import '../../../../../core/colors/colors.dart';
 
 class NextButton extends StatelessWidget {

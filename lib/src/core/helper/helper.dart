@@ -45,7 +45,7 @@ class Helper {
 
   //Message
   static void showMessage(String message) {
-    Fluttertoast.showToast(msg: message);
+    Fluttertoast.showToast(msg: message, backgroundColor: Colors.green);
   }
 
   static void showAlertMessage(String message) {

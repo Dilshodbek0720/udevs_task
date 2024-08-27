@@ -142,7 +142,7 @@ class _MainPageState extends State<MainPage> {
                         children: [
                           if (state.todosByDateModel.isEmpty)
                             Text(
-                              'In this date tasks does not available',
+                              'There are no tasks on this date',
                               style: context.displayMedium,
                             )
                           else

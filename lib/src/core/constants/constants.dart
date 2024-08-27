@@ -13,6 +13,7 @@ abstract class AppConstants {
   //EVENT COLORS
   static List<Color> colors = [
     AppColors.C_008000,
+    AppColors.C_009FEE,
     AppColors.C_EE2B00,
     AppColors.C_EE8F00,
   ];

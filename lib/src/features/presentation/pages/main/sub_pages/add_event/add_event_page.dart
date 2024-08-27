@@ -136,29 +136,41 @@ class _AddEventViewState extends State<AddEventView> {
                           suffixIcon: AppIcons.location,
                         ),
                         16.ph,
-                        DropdownButton(
-                          value:
-                              Helper.hexToColor(state.todoModel.priorityColor),
-                          items: AppConstants.colors
-                              .map(
-                                (color) => DropdownMenuItem(
-                                  value: color,
-                                  child: ColoredBox(
-                                    color: color,
-                                    child: const SizedBox(
-                                      height: 20.0,
-                                      width: 20.0,
-                                    ),
+                        Text(
+                          "Priority color",
+                          style: context.displaySmall,
+                        ),
+                        4.ph,
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          decoration: BoxDecoration(
+                              color: AppColors.C_F3F4F6,
+                              borderRadius: BorderRadius.circular(8)
+                          ),
+                          child: DropdownButton(
+                            value:
+                            Helper.hexToColor(state.todoModel.priorityColor),
+                            items: AppConstants.colors
+                                .map(
+                                  (color) => DropdownMenuItem(
+                                value: color,
+                                child: ColoredBox(
+                                  color: color,
+                                  child: const SizedBox(
+                                    height: 20.0,
+                                    width: 20.0,
                                   ),
                                 ),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            dataCubit.updateTodoData(
-                              TodoModelKey.priorityColor,
-                              value.toString().substring(6, 16),
-                            );
-                          },
+                              ),
+                            )
+                                .toList(),
+                            onChanged: (value) {
+                              dataCubit.updateTodoData(
+                                TodoModelKey.priorityColor,
+                                value.toString().substring(6, 16),
+                              );
+                            },
+                          ),
                         ),
                         16.ph,
                         EventFieldWithTitle(

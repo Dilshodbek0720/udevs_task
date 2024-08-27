@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:udevs_task/src/core/extentions/space.dart';
 import 'package:udevs_task/src/core/extentions/text_styles.dart';
 
-
 class IconWithText extends StatelessWidget {
   const IconWithText({
     super.key,
