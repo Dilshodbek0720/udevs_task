@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:udevs_task/src/core/extentions/space.dart';
 import '../../../../../core/icons/icons.dart';
 import '../../../blocs/get_events/get_events_bloc.dart';
-import '../../../cubits/select_needed_day/select_needed_day_cubit.dart';
+import '../../../cubits/select_current_day/select_current_day_cubit.dart';
 import 'next_button.dart';
 
 const Duration _monthScrollDuration = Duration(milliseconds: 200);
@@ -608,12 +608,12 @@ class _DayPicker extends StatefulWidget {
 class _DayPickerState extends State<_DayPicker> {
   /// List of [FocusNode]s, one for each day of the month.
   late List<FocusNode> _dayFocusNodes;
-  late SelectNeededDayCubit neededDayCubit;
+  late SelectCurrentDayCubit neededDayCubit;
 
   @override
   void initState() {
     super.initState();
-    neededDayCubit = BlocProvider.of<SelectNeededDayCubit>(context);
+    neededDayCubit = BlocProvider.of<SelectCurrentDayCubit>(context);
     neededDayCubit.selectDate(widget.currentDate);
 
     final int daysInMonth = DateUtils.getDaysInMonth(

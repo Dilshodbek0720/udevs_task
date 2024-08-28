@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'select_needed_day_state.dart';
+part 'select_current_day_state.dart';
 
-class SelectNeededDayCubit extends Cubit<SelectNeededDayState> {
-  SelectNeededDayCubit()
+class SelectCurrentDayCubit extends Cubit<SelectCurrentDayState> {
+  SelectCurrentDayCubit()
       : super(
-          SelectNeededDayState(
+          SelectCurrentDayState(
             dateTime: DateTime.now(),
           ),
         );

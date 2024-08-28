@@ -6,7 +6,7 @@ import 'package:udevs_task/src/core/constants/constants.dart';
 import 'package:udevs_task/src/core/extentions/space.dart';
 import 'package:udevs_task/src/core/extentions/text_styles.dart';
 import 'package:udevs_task/src/features/presentation/blocs/get_events/get_events_bloc.dart';
-import 'package:udevs_task/src/features/presentation/cubits/select_needed_day/select_needed_day_cubit.dart';
+import 'package:udevs_task/src/features/presentation/cubits/select_current_day/select_current_day_cubit.dart';
 import '../../../../core/helper/helper.dart';
 import '../../blocs/events_for_calendar/event_for_calendar_bloc.dart';
 import 'widgets/card_item.dart';
@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    var neededDayCubit = BlocProvider.of<SelectNeededDayCubit>(context);
+    var neededDayCubit = BlocProvider.of<SelectCurrentDayCubit>(context);
 
     return Scaffold(
       appBar: AppBar(),

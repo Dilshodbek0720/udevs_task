@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:udevs_task/src/core/extentions/space.dart';
 import 'package:udevs_task/src/core/extentions/text_styles.dart';
-import 'package:udevs_task/src/features/presentation/cubits/select_needed_day/select_needed_day_cubit.dart';
+import 'package:udevs_task/src/features/presentation/cubits/select_current_day/select_current_day_cubit.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import '../../../../../core/icons/icons.dart';
 
@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget {
         const Spacer(
           flex: 2,
         ),
-        BlocBuilder<SelectNeededDayCubit, SelectNeededDayState>(
+        BlocBuilder<SelectCurrentDayCubit, SelectCurrentDayState>(
           builder: (context, state) {
             return Column(
               children: [

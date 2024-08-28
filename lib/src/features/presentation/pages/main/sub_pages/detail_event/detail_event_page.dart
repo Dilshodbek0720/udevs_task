@@ -9,7 +9,7 @@ import '../../../../../../core/colors/colors.dart';
 import '../../../../../../core/icons/icons.dart';
 import '../../../../blocs/events_for_calendar/event_for_calendar_bloc.dart';
 import '../../../../blocs/get_events/get_events_bloc.dart';
-import '../../../../cubits/select_needed_day/select_needed_day_cubit.dart';
+import '../../../../cubits/select_current_day/select_current_day_cubit.dart';
 import 'widgets/large_appbar.dart';
 
 class DetailEventPage extends StatelessWidget {
@@ -23,7 +23,7 @@ class DetailEventPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var neededDay = BlocProvider.of<SelectNeededDayCubit>(context);
+    var neededDay = BlocProvider.of<SelectCurrentDayCubit>(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [

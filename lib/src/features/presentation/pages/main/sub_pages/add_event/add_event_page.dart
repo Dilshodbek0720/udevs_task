@@ -14,7 +14,7 @@ import '../../../../../data/models/todo/todo_model_key.dart';
 import '../../../../blocs/events_for_calendar/event_for_calendar_bloc.dart';
 import '../../../../blocs/get_location/get_location_bloc.dart';
 import '../../../../cubits/event_data/event_data_cubit.dart';
-import '../../../../cubits/select_needed_day/select_needed_day_cubit.dart';
+import '../../../../cubits/select_current_day/select_current_day_cubit.dart';
 import 'widgets/event_field_with_title.dart';
 
 class AddEventPage extends StatelessWidget {
@@ -58,7 +58,7 @@ class _AddEventViewState extends State<AddEventView> {
   late TextEditingController _eventTimeController;
   late EventDataCubit dataCubit;
   late GetLocationBloc locationBloc;
-  late SelectNeededDayCubit selectNeededDayCubit;
+  late SelectCurrentDayCubit selectNeededDayCubit;
 
   @override
   void initState() {
@@ -68,7 +68,7 @@ class _AddEventViewState extends State<AddEventView> {
     _eventTimeController = TextEditingController();
     dataCubit = BlocProvider.of<EventDataCubit>(context);
     locationBloc = BlocProvider.of<GetLocationBloc>(context);
-    selectNeededDayCubit = BlocProvider.of<SelectNeededDayCubit>(context);
+    selectNeededDayCubit = BlocProvider.of<SelectCurrentDayCubit>(context);
     super.initState();
   }
 
@@ -97,118 +97,111 @@ class _AddEventViewState extends State<AddEventView> {
           toolbarHeight: 60.0,
         ),
         body: CustomScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                child: BlocBuilder<EventDataCubit, EventDataState>(
-                  builder: (context, state) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        16.ph,
-                        EventFieldWithTitle(
-                          controller: _eventNameController,
-                          title: 'Event name',
-                          onChanged: (value) {
-                            dataCubit.updateTodoData(
-                                TodoModelKey.eventName, value);
-                          },
-                        ),
-                        16.ph,
-                        EventFieldWithTitle(
-                          controller: _eventDescController,
-                          title: 'Event description',
-                          maxLine: 3,
-                          onChanged: (value) {
-                            dataCubit.updateTodoData(
-                                TodoModelKey.eventDesc, value);
-                          },
-                        ),
-                        16.ph,
-                        EventFieldWithTitle(
-                          readOnly: true,
-                          onTap: getLocation,
-                          controller: _eventLocationController,
-                          title: 'Event location',
-                          suffixIcon: AppIcons.location,
-                        ),
-                        16.ph,
-                        Text(
-                          "Priority color",
-                          style: context.displaySmall,
-                        ),
-                        4.ph,
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          decoration: BoxDecoration(
-                              color: AppColors.C_F3F4F6,
-                              borderRadius: BorderRadius.circular(8)
-                          ),
-                          child: DropdownButton(
-                            value:
-                            Helper.hexToColor(state.todoModel.priorityColor),
-                            items: AppConstants.colors
-                                .map(
-                                  (color) => DropdownMenuItem(
-                                value: color,
-                                child: ColoredBox(
-                                  color: color,
-                                  child: const SizedBox(
-                                    height: 20.0,
-                                    width: 20.0,
-                                  ),
-                                ),
-                              ),
-                            )
-                                .toList(),
-                            onChanged: (value) {
-                              dataCubit.updateTodoData(
-                                TodoModelKey.priorityColor,
-                                value.toString().substring(6, 16),
-                              );
-                            },
+    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+    slivers: [
+    SliverFillRemaining(
+    hasScrollBody: false,
+    child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          child: BlocBuilder<EventDataCubit, EventDataState>(
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  16.ph,
+                  EventFieldWithTitle(
+                    controller: _eventNameController,
+                    title: 'Event name',
+                    onChanged: (value) {
+                      dataCubit.updateTodoData(
+                          TodoModelKey.eventName, value);
+                    },
+                  ),
+                  16.ph,
+                  EventFieldWithTitle(
+                    controller: _eventDescController,
+                    title: 'Event description',
+                    maxLine: 3,
+                    onChanged: (value) {
+                      dataCubit.updateTodoData(
+                          TodoModelKey.eventDesc, value);
+                    },
+                  ),
+                  16.ph,
+                  EventFieldWithTitle(
+                    readOnly: true,
+                    onTap: getLocation,
+                    controller: _eventLocationController,
+                    title: 'Event location',
+                    suffixIcon: AppIcons.location,
+                  ),
+                  16.ph,
+                  Text(
+                    "Priority color",
+                    style: context.displaySmall,
+                  ),
+                  4.ph,
+                  DropdownButton(
+                    value:
+                    Helper.hexToColor(state.todoModel.priorityColor),
+                    items: AppConstants.colors
+                        .map(
+                          (color) => DropdownMenuItem(
+                        value: color,
+                        child: ColoredBox(
+                          color: color,
+                          child: const SizedBox(
+                            height: 20.0,
+                            width: 20.0,
                           ),
                         ),
-                        16.ph,
-                        EventFieldWithTitle(
-                          readOnly: true,
-                          onTap: getTime,
-                          controller: _eventTimeController,
-                          title: 'Event Time',
+                      ),
+                    )
+                        .toList(),
+                    onChanged: (value) {
+                      dataCubit.updateTodoData(
+                        TodoModelKey.priorityColor,
+                        value.toString().substring(6, 16),
+                      );
+                    },
+                  ),
+                  16.ph,
+                  EventFieldWithTitle(
+                    readOnly: true,
+                    onTap: getTime,
+                    controller: _eventTimeController,
+                    title: 'Event Time',
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: addEvent,
+                    child: SizedBox(
+                      height: 54.0,
+                      width: double.infinity,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: AppColors.C_009FEE,
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: addEvent,
-                          child: SizedBox(
-                            height: 54.0,
-                            width: double.infinity,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: AppColors.C_009FEE,
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Add',
-                                  style: context.displayMedium?.copyWith(
-                                    color: AppColors.C_FFFFFF,
-                                  ),
-                                ),
-                              ),
+                        child: Center(
+                          child: Text(
+                            'Add',
+                            style: context.displayMedium?.copyWith(
+                              color: AppColors.C_FFFFFF,
                             ),
                           ),
                         ),
-                        28.ph,
-                      ],
-                    );
-                  },
-                ),
-              ),
-            )
-          ],
+                      ),
+                    ),
+                  ),
+                  28.ph,
+                ],
+              );
+            },
+          ),
+        ),
+        ),
+        ],
         ),
       ),
     );

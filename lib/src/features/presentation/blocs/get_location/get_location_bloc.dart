@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:udevs_task/src/core/resourses/data_state.dart';
 import 'package:udevs_task/src/features/data/repository/get_location_repository.dart';
-
 import '../../../data/models/location/location.dart';
 
 part 'get_location_event.dart';

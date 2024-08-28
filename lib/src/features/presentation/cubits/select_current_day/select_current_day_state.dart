@@ -1,16 +1,16 @@
-part of 'select_needed_day_cubit.dart';
+part of 'select_current_day_cubit.dart';
 
-class SelectNeededDayState extends Equatable {
-  const SelectNeededDayState({
+class SelectCurrentDayState extends Equatable {
+  const SelectCurrentDayState({
     required this.dateTime,
   });
 
   final DateTime dateTime;
 
-  SelectNeededDayState copyWith({
+  SelectCurrentDayState copyWith({
     DateTime? dateTime,
   }) =>
-      SelectNeededDayState(
+      SelectCurrentDayState(
         dateTime: dateTime ?? this.dateTime,
       );
 
